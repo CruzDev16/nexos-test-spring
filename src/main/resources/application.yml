@@ -1,0 +1,56 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: update    
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    defer-datasource-initialization: true
+  output:
+    ansi:
+      enabled: always
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  sql:
+    init:
+      enabled: true
+logging:
+  pattern:
+    console: "%d{yyyy-mm-dd HH:mm:ss} %-5level %logger{36} : %msg%n"
+  level:
+    web: debug
+
+---
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nexos
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: passtester
+    initialization-mode: always
+  config:
+    activate:
+      on-profile: dev
+
+server:
+  port: 8081
+ 
+---
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nexos_test
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: passtester
+  config:
+    activate:
+      on-profile: test
+      
+      
